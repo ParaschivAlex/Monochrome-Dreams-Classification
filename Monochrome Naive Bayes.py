@@ -99,7 +99,7 @@ predictions = clf.predict(load_reshaped_validation)  # afisez predictiile pe dat
 print(predictions)
 
 
-def pred_matrix(label_true, label_predicted):  # aici afisez matricea predictiilor
+def prediction_matrix(label_true, label_predicted):  # aici afisez matricea predictiilor
     num_classes = max(max(label_true), max(label_predicted)) + 1 #iau numarul de clase posibile, puteam sa ii dau 9 eu
     pred_matrix = np.zeros((num_classes, num_classes)) #face o matrice 9x9 initializata cu 0
 
@@ -108,7 +108,7 @@ def pred_matrix(label_true, label_predicted):  # aici afisez matricea predictiil
     return pred_matrix
 
 
-print(pred_matrix(label_validation, predictions)) #pe exemplul dat observam ca majoritatea sunt incadrate bine doar label 0 are incadrari proaste
+print(prediction_matrix(label_validation, predictions)) #pe exemplul dat observam ca majoritatea sunt incadrate bine doar label 0 are incadrari proaste
 
 # am comentat scrierea in fisier ca sa nu se ruleze cand mai testam modelul si aveam alte date mai bune (lucram pe acelasi fisier cu toate sursele)
 # g = open("sample_submission.txt", "w")
