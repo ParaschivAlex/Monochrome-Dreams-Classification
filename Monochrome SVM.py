@@ -86,16 +86,16 @@ print('SVM model accuracy for C=%d is %f' % (4, model_accuracy_svm))  # am testa
 
 # cele mai bune rezultate au fost pe C=4 si C=9, pentru C >= 12 deja a putut fi observat un overfitting atunci cand am dat submit pe kaggle
 
-def confusion_matrix(label_true, label_predicted):  # aici afisez matricea de confuzie
+def prediction_matrix(label_true, label_predicted):  # aici afisez matricea de predictii
     num_classes = max(max(label_true), max(label_predicted)) + 1  # iau numarul de clase posibile, puteam sa ii dau 9 eu
-    conf_matrix = np.zeros((num_classes, num_classes))  # face o matrice 9x9 initializata cu 0
+    pred_matrix = np.zeros((num_classes, num_classes))  # face o matrice 9x9 initializata cu 0
 
     for i in range(len(label_true)):  # iau i = numarul de labeluri date (de imagini)
-        conf_matrix[int(label_true[i]), int(label_predicted[i])] += 1  # daca prezicerea este corecta crestem valoarea pe diagonala principala, daca nu in afara ei ( [i][j] i -> ce trebuia prezis si j-> ce a prezis)
-    return conf_matrix
+        pred_matrix[int(label_true[i]), int(label_predicted[i])] += 1  # daca prezicerea este corecta crestem valoarea pe diagonala principala, daca nu in afara ei ( [i][j] i -> ce trebuia prezis si j-> ce a prezis)
+    return pred_matrix
 
 
-print(confusion_matrix(label_validation, predicted_labels_svm))
+print(prediction_matrix(label_validation, predicted_labels_svm))
 
 g = open("sample_submission.txt", "w")
 sample_sub = svm_model.predict(load_reshaped_test)  # aici dau predict pe datele de test
