@@ -154,16 +154,16 @@ clf = MLPClassifier(hidden_layer_sizes=(50,100,50), activation='relu',
 print("Accuracy =", train_and_eval(clf))
 predictions = clf.predict(load_reshaped_validation)
 
-def confusion_matrix(label_true, label_predicted):  # aici afisez matricea de confuzie
+def pred_matrix(label_true, label_predicted):  # aici afisez matricea de predictii
     num_classes = max(max(label_true), max(label_predicted)) + 1  # iau numarul de clase posibile, puteam sa ii dau 9 eu
-    conf_matrix = np.zeros((num_classes, num_classes))  # face o matrice 9x9 initializata cu 0
+    pred_matrix = np.zeros((num_classes, num_classes))  # face o matrice 9x9 initializata cu 0
 
     for i in range(len(label_true)):  # iau i = numarul de labeluri date (de imagini)
-        conf_matrix[int(label_true[i]), int(label_predicted[i])] += 1  # daca prezicerea este corecta crestem valoarea pe diagonala principala, daca nu in afara ei ( [i][j] i -> ce trebuia prezis si j-> ce a prezis)
-    return conf_matrix
+        pred_matrix[int(label_true[i]), int(label_predicted[i])] += 1  # daca prezicerea este corecta crestem valoarea pe diagonala principala, daca nu in afara ei ( [i][j] i -> ce trebuia prezis si j-> ce a prezis)
+    return pred_matrix
 
 
-print(confusion_matrix(label_validation, predictions))
+print(pred_matrix(label_validation, predictions))
 
 # g = open("sample_submission.txt", "w")
 # sample_sub = clf.predict(load_reshaped_test)
