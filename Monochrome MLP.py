@@ -154,7 +154,7 @@ clf = MLPClassifier(hidden_layer_sizes=(50,100,50), activation='relu',
 print("Accuracy =", train_and_eval(clf))
 predictions = clf.predict(load_reshaped_validation)
 
-def pred_matrix(label_true, label_predicted):  # aici afisez matricea de predictii
+def prediction_matrix(label_true, label_predicted):  # aici afisez matricea de predictii
     num_classes = max(max(label_true), max(label_predicted)) + 1  # iau numarul de clase posibile, puteam sa ii dau 9 eu
     pred_matrix = np.zeros((num_classes, num_classes))  # face o matrice 9x9 initializata cu 0
 
@@ -163,7 +163,7 @@ def pred_matrix(label_true, label_predicted):  # aici afisez matricea de predict
     return pred_matrix
 
 
-print(pred_matrix(label_validation, predictions))
+print(prediction_matrix(label_validation, predictions))
 
 # g = open("sample_submission.txt", "w")
 # sample_sub = clf.predict(load_reshaped_test)
